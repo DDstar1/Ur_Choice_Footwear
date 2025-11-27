@@ -64,11 +64,7 @@ export default function PalmCraftWebsite() {
       <GallerySection />
 
       {/* Testimonials Section */}
-      <TestimonialsSection
-        testimonials={testimonials}
-        currentTestimonial={currentTestimonial}
-        setCurrentTestimonial={setCurrentTestimonial}
-      />
+      <TestimonialsSection />
 
       {/* How to Order Section */}
       <HowToOrder />

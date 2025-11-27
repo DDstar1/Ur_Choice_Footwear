@@ -58,22 +58,40 @@ const products = [
 
 const testimonials = [
   {
-    name: "Amaka Okonkwo",
-    location: "Benin City",
-    text: "The quality is exceptional! I bought three pairs of palm shoes and they are so comfortable. Very happy with my purchase.",
-    rating: 5,
+    name: "Sasha Shapere",
+    role: "Fashion Enthusiast",
+    image: "/fashion/headshot.jpg",
+    text: "The quality and design of Amy’s Shoes are unmatched. I love how I can express my style while supporting eco-friendly fashion. Definitely my go-to store for all occasions.",
   },
   {
-    name: "Chidi Eze",
-    location: "Lagos",
-    text: "Beautiful craftsmanship. The bag I ordered is unique and gets compliments everywhere I go. Highly recommend!",
-    rating: 5,
+    name: "Jordan Styles",
+    role: "Designer",
+    image: "/fashion/headshot.jpg",
+    text: "Amy’s Shoes are a perfect blend of comfort and style. The craftsmanship is incredible, and I always get compliments when I wear them.",
   },
   {
-    name: "Grace Imafidon",
-    location: "Benin City",
-    text: "Authentic Nigerian quality. Fast delivery within Benin. The WhatsApp ordering was so easy!",
-    rating: 5,
+    name: "Olivia Trends",
+    role: "Influencer",
+    image: "/fashion/headshot.jpg",
+    text: "Sustainable fashion is the future, and Amy’s Shoes lead the way! Their designs are stunning and truly eco-friendly.",
+  },
+  {
+    name: "Leo Harper",
+    role: "Stylist",
+    image: "/fashion/headshot.jpg",
+    text: "Amy’s Shoes are my favorite pick for my clients. They combine fashion with function in the best way possible!",
+  },
+  {
+    name: "Mia Couture",
+    role: "Fashion Blogger",
+    image: "/fashion/blogger.jpg",
+    text: "These shoes are a must-have! The comfort and durability make them stand out in the industry.",
+  },
+  {
+    name: "Ethan Vogue",
+    role: "Model",
+    image: "/fashion/headshot.jpg",
+    text: "I always feel confident in Amy’s Shoes. They elevate any outfit and are super comfortable to walk in!",
   },
 ];
 
