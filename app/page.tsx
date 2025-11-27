@@ -1,11 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-import {
-  products as allProducts,
-  testimonials,
-  contactInfo,
-} from "@/data/data";
+import { products as allProducts, contactInfo } from "@/data/data";
 import NavBar from "@/components/NavBar";
 import HeroSection from "@/components/HeroSection";
 import ShopSection from "@/components/ShopSection";
@@ -18,7 +14,6 @@ import FooterSection from "@/components/Footer";
 
 export default function PalmCraftWebsite() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [currentTestimonial, setCurrentTestimonial] = useState<number>(0);
 
   // replace with actual number
 

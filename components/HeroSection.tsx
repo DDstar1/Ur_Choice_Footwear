@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface HeroSectionProps {
   whatsappNumber: string;
@@ -11,20 +12,35 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   whatsappNumber,
   scrollToSection,
 }) => {
+  const { scrollY } = useScroll();
+
+  // Parallax: move background slower than scroll
+  const yPos = useTransform(scrollY, [0, 500], ["0%", "30%"]);
+
   return (
-    <section
-      id="home"
-      className="pt-16 bg-gradient-to-br from-amber-50 to-orange-50"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="home" className="pt-16 relative overflow-hidden h-auto">
+      {/* Parallax Background */}
+      <motion.div
+        style={{
+          y: yPos,
+          backgroundImage:
+            'linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("/images/HeroBG.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="absolute inset-0 w-full h-full"
+      />
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
+          {/* Text */}
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Handcrafted Palm Shoes & Bags from Benin City
             </h1>
 
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-xl text-gray-200 mb-8">
               Authentic Nigerian craftsmanship meets modern style. Each piece is
               handmade with care using traditional palm weaving techniques.
             </p>
@@ -48,8 +64,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
           </div>
 
-          {/* Hero Image */}
-          <div className="relative h-96 md:h-[500px]">
+          {/* Image */}
+          <div className="relative h-96 hidden  md:h-[500px]">
             <img
               src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&h=800&fit=crop"
               alt="Handcrafted palm products"
