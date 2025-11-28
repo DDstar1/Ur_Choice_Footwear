@@ -2,16 +2,13 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { contactInfo } from "@/data/data";
 
 interface NavBarProps {
-  whatsappNumber: string;
   scrollToSection: (sectionId: string) => void;
 }
 
-export default function NavBar({
-  whatsappNumber,
-  scrollToSection,
-}: NavBarProps) {
+export default function NavBar({ scrollToSection }: NavBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -66,7 +63,7 @@ export default function NavBar({
 
           {/* WhatsApp CTA */}
           <a
-            href={`https://wa.me/${whatsappNumber}`}
+            href={`https://wa.me/${contactInfo.whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
@@ -103,7 +100,7 @@ export default function NavBar({
 
             {/* WhatsApp Button */}
             <a
-              href={`https://wa.me/${whatsappNumber}`}
+              href={`https://wa.me/${contactInfo.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full bg-green-600 text-white text-center px-6 py-2 rounded-full mt-4"

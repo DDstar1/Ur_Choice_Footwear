@@ -8,8 +8,11 @@ const GallerySection: React.FC = () => {
 
   return (
     <section id="gallery" className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center z-30 relative bg-white/10 backdrop-blur-sm rounded-lg p-8 inline-block mx-auto mb-12">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className="text-center z-30 relative rounded-lg py-15 pb-30 w-full inline-block mx-auto
+    bg-[linear-gradient(to_top,rgb(255_255_255/0)_0%,rgb(255_255_255/0.8)_10%,rgb(255_255_255/1)_100%)]"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Gallery
           </h2>

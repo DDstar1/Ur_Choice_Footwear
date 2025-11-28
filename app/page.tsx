@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 
-import { galleryImages } from "@/data/data"; // your updated galleryImages with category, title, description
+import { galleryImages, contactInfo } from "@/data/data"; // your updated galleryImages with category, title, description
+
 import NavBar from "@/components/NavBar";
 import HeroSection from "@/components/HeroSection";
 import ShopSection from "@/components/ShopSection";
@@ -14,8 +15,6 @@ import FooterSection from "@/components/Footer";
 
 export default function PalmCraftWebsite() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-
-  const whatsappNumber = "234XXXXXXXXXX"; // replace with your actual number
 
   // Transform galleryImages into products format for ShopSection
   const products = galleryImages.map((item, index) => ({
@@ -37,12 +36,6 @@ export default function PalmCraftWebsite() {
   const whatsappMessage = (productName: string): string =>
     `Hello! I'm interested in ordering the ${productName}. Can you provide more details?`;
 
-  // Filter products by selected category
-  const filteredProducts =
-    selectedCategory === "all"
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
-
   // Scroll function
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -51,25 +44,13 @@ export default function PalmCraftWebsite() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <NavBar
-        whatsappNumber={whatsappNumber}
-        scrollToSection={scrollToSection}
-      />
+      <NavBar scrollToSection={scrollToSection} />
 
       {/* Hero Section */}
-      <HeroSection
-        whatsappNumber={whatsappNumber}
-        scrollToSection={scrollToSection}
-      />
+      <HeroSection scrollToSection={scrollToSection} />
 
       {/* Shop Section */}
-      <ShopSection
-        products={filteredProducts}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        whatsappNumber={whatsappNumber}
-        whatsappMessage={whatsappMessage}
-      />
+      <ShopSection whatsappMessage={whatsappMessage} />
 
       {/* About Section */}
       <AboutSection />
@@ -91,7 +72,7 @@ export default function PalmCraftWebsite() {
 
       {/* Floating WhatsApp Button */}
       <a
-        href={`https://wa.me/${whatsappNumber}`}
+        href={contactInfo.whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-2xl hover:bg-green-700 transition z-50 flex items-center gap-2"

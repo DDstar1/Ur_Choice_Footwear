@@ -2,16 +2,13 @@
 
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { contactInfo } from "@/data/data";
 
 interface HeroSectionProps {
-  whatsappNumber: string;
   scrollToSection: (sectionId: string) => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({
-  whatsappNumber,
-  scrollToSection,
-}) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   const { scrollY } = useScroll();
 
   // Parallax: move background slower than scroll
@@ -54,7 +51,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               </button>
 
               <a
-                href={`https://wa.me/${whatsappNumber}`}
+                href={contactInfo.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-600 text-white px-8 py-3 rounded-full text-lg hover:bg-green-700 transition text-center"
