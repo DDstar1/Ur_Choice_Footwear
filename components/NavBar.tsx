@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 interface NavBarProps {
   whatsappNumber: string;
@@ -18,9 +19,15 @@ export default function NavBar({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <span className="text-2xl font-bold text-amber-800">PalmCraft</span>
-            <span className="ml-2 text-sm text-gray-600">Benin City</span>
+          <div className="flex items-center space-x-2 ">
+            <Image
+              src="/images/logo.png"
+              alt="PalmCraft Logo"
+              width={50} // adjust size as needed
+              height={50}
+              className="object-contain rounded-full overflow-hidden"
+            />
+            <span className="text-sm text-gray-600">Benin City</span>
           </div>
 
           {/* Desktop Menu */}

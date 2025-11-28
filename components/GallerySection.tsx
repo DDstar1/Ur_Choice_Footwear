@@ -31,7 +31,7 @@ const GallerySection: React.FC = () => {
             >
               {/* Image zooms in while keeping object-cover */}
               <motion.img
-                src={img}
+                src={img.src}
                 alt={`Gallery ${idx + 1}`}
                 className="w-full h-full object-cover"
                 initial={{ scale: 1 }}
