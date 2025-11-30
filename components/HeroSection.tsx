@@ -15,7 +15,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   const yPos = useTransform(scrollY, [0, 500], ["0%", "30%"]);
 
   return (
-    <section id="home" className="pt-16 relative overflow-hidden h-auto">
+    <section
+      id="home"
+      className="pt-16 relative flex items-center justify-center overflow-hidden h-screen"
+    >
       {/* Parallax Background */}
       <motion.div
         style={{
@@ -29,10 +32,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
       />
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text */}
-          <div>
+          <div className="flex flex-col gap-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Handcrafted Palm Shoes & Bags from Benin City
             </h1>
