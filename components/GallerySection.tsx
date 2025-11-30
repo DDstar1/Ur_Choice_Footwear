@@ -69,16 +69,16 @@ const GallerySection: React.FC = () => {
         </div>
 
         <div className="relative">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <GalleryColumn images={column1} direction="up" />
             <GalleryColumn images={column2} direction="down" />
+            <div className="hidden md:block">
+              <GalleryColumn images={column3} direction="up" />
+            </div>
+            <div className="hidden md:block">
+              <GalleryColumn images={column4} direction="down" />
+            </div>
           </div>
-
-          {/* Top gradient overlay */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent pointer-events-none z-10"></div>
-
-          {/* Bottom gradient overlay */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
     </section>
