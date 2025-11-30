@@ -187,10 +187,24 @@ const ShopSection: React.FC<ShopSectionProps> = ({
 
         {/* See More/Less Button */}
         {shouldShowSeeMore && (
-          <div className="text-center mt-12 animate-fade-in">
+          <div
+            id="see_more_btn"
+            className="text-center sticky bottom-5 left-0 mt-12 animate-fade-in"
+          >
             <button
-              onClick={() => setShowAll(!showAll)}
-              className="bg-amber-800 text-white px-8 py-3 rounded-full hover:bg-amber-900 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 mx-auto"
+              onClick={() => {
+                setShowAll(!showAll);
+                if (showAll) {
+                  // If we're about to show more products, scroll to the shop section
+                  setTimeout(() => {
+                    document.getElementById("shop")?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "end",
+                    });
+                  }, 0); // Small delay to ensure state update and DOM rendering
+                }
+              }}
+              className="bg-amber-800 text-white px-8 py-3 rounded-full hover:bg-amber-900 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 "
             >
               {showAll ? (
                 <>
@@ -200,9 +214,7 @@ const ShopSection: React.FC<ShopSectionProps> = ({
               ) : (
                 <>
                   <ChevronDown size={20} />
-                  See More Products ({filteredProducts.length -
-                    initialLimit}{" "}
-                  more)
+                  See More ({filteredProducts.length - initialLimit})
                 </>
               )}
             </button>
