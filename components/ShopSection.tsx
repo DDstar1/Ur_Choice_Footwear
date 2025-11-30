@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { ShoppingBag } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ShoppingBag, ChevronDown, ChevronUp } from "lucide-react";
 import { contactInfo } from "@/data/data";
 import { galleryImages } from "@/data/data";
 
@@ -41,9 +41,36 @@ const ShopSection: React.FC<ShopSectionProps> = ({
 }) => {
   const [internalCategory, setInternalCategory] = React.useState("all");
   const [products] = useState(() => transformGalleryToProducts(galleryImages));
+  const [showAll, setShowAll] = useState(false);
+  const [initialLimit, setInitialLimit] = useState(6); // Default fallback
 
   const selectedCategory = internalCategory;
   const setSelectedCategory = setInternalCategory;
+
+  // Calculate initial limit based on screen height
+  useEffect(() => {
+    const calculateInitialLimit = () => {
+      if (typeof window !== "undefined") {
+        const screenHeight = window.innerHeight;
+        // Estimate how many products can fit in 2x screen height
+        // Each product card is roughly 400-500px tall on mobile
+        const productCardHeight = 450;
+        const productsPerScreen = Math.floor(screenHeight / productCardHeight);
+        return productsPerScreen * 2; // 2x screen height
+      }
+      return 6; // Fallback
+    };
+
+    setInitialLimit(calculateInitialLimit());
+
+    // Recalculate on window resize
+    const handleResize = () => {
+      setInitialLimit(calculateInitialLimit());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Dynamically get unique categories from products
   const categories = React.useMemo(() => {
@@ -66,6 +93,19 @@ const ShopSection: React.FC<ShopSectionProps> = ({
           (p) =>
             p.category.toLowerCase().replace(/\s+/g, "-") === selectedCategory
         );
+
+  // Determine which products to display
+  const displayedProducts = showAll
+    ? filteredProducts
+    : filteredProducts.slice(0, initialLimit);
+
+  // Check if we need to show the "See More" button
+  const shouldShowSeeMore = filteredProducts.length > initialLimit;
+
+  // Reset showAll when category changes
+  React.useEffect(() => {
+    setShowAll(false);
+  }, [selectedCategory]);
 
   return (
     <section id="shop" className="py-20 bg-white">
@@ -100,7 +140,7 @@ const ShopSection: React.FC<ShopSectionProps> = ({
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product, index) => (
+          {displayedProducts.map((product, index) => (
             <div
               key={product.id}
               className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:-translate-y-2 animate-fade-in-up"
@@ -144,6 +184,30 @@ const ShopSection: React.FC<ShopSectionProps> = ({
             </div>
           ))}
         </div>
+
+        {/* See More/Less Button */}
+        {shouldShowSeeMore && (
+          <div className="text-center mt-12 animate-fade-in">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="bg-amber-800 text-white px-8 py-3 rounded-full hover:bg-amber-900 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 mx-auto"
+            >
+              {showAll ? (
+                <>
+                  <ChevronUp size={20} />
+                  Show Less
+                </>
+              ) : (
+                <>
+                  <ChevronDown size={20} />
+                  See More Products ({filteredProducts.length -
+                    initialLimit}{" "}
+                  more)
+                </>
+              )}
+            </button>
+          </div>
+        )}
 
         {/* Empty state */}
         {filteredProducts.length === 0 && (
