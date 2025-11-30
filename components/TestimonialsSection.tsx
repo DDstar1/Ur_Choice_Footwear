@@ -45,7 +45,7 @@ export default function Testimonials() {
       </div>
 
       <div
-        style={{ height: "300px" }}
+        style={{ height: "350px" }}
         className="flex gap-5 min-h-42 relative justify-center p-8 text-gray-400 flex-nowrap"
       >
         <AnimatePresence>
@@ -126,13 +126,13 @@ export default function Testimonials() {
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={handlePrev}
-                    className="text-gray-400 hover:text-white"
+                    className="text-gray-400 text-2xl hover:text-white"
                   >
                     &larr;
                   </button>
                   <button
                     onClick={handleNext}
-                    className="text-gray-400 hover:text-white"
+                    className="text-gray-400 text-2xl hover:text-white"
                   >
                     &rarr;
                   </button>
